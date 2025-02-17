@@ -1,6 +1,6 @@
 # hpe-assignments
 
-## Assessment Task:
+## Assessment 1:
 
 ### Write a Python script that:
 
