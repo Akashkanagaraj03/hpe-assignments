@@ -14,12 +14,9 @@ A man a plan a canal Panama
 ```
 
 2. Processes each sentence to:
-
-  a. Count the number of words in each sentence.
-
-  b. Identify the longest word in each sentence.
-
-  c. Check if any word in the sentence is a palindrome (a word that reads the same backward and forward).
+   * Count the number of words in each sentence.
+   * Identify the longest word in each sentence.
+   * Check if any word in the sentence is a palindrome (a word that reads the same backward and forward).
 
 3. Writes the results to a new file called sentence_analysis.txt with the following format:
 
