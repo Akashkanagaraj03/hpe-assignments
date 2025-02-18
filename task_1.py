@@ -41,14 +41,11 @@ with open("sentences.txt", "r") as file:
         line.strip()
         words = line.split()
 
-        longest = longest_words(words)
-        palindromes = palindrome_words(words)
-
         with open("sentences_analysis.txt", "a") as output:
             output.write(f'''Sentence: {line.strip()}
 Word Count: {len(words)}
-Longest Word: {longest}
-Palindrome: {palindromes if len(palindromes) >0 else "None"}
+Longest Word: {longest_words(words)}
+Palindrome: {palindrome_words(words) if len(palindrome_words(words)) >0 else "None"}
 
 ''')
 
