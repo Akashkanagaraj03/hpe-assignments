@@ -33,20 +33,24 @@ def palindrome_words(words):
             palindromes.append(word)
     return palindromes
 
-def main():
-    if os.path.exists("sentences_analysis.txt"):
-        os.remove("sentences_analysis.txt")
-    with open("sentences.txt", "r") as input_file, open("sentences_analysis.txt", "a") as output_file:
-        for line in input_file:
-            line.strip()
-            words = line.split()
+if os.path.exists("sentences_analysis.txt"):
+    os.remove("sentences_analysis.txt")
 
-            output = f"Sentence: {line.strip()}\n" + \
-                     f"Word Count: {len(words)}\n" + \
-                     f"Longest Word: {longest_words(words)}\n" + \
-                     f"Palindrome: {palindrome_words(words) if len(palindrome_words(words)) > 0 else 'None'}\n\n"
+with open("sentences.txt", "r") as file:
+    for line in file:
+        line.strip()
+        words = line.split()
 
-            output_file.write(output)
+        longest = longest_words(words)
+        palindromes = palindrome_words(words)
 
-if __name__ == "__main__":
-    main()
+        with open("sentences_analysis.txt", "a") as output:
+            output.write(f'''Sentence: {line.strip()}
+Word Count: {len(words)}
+Longest Word: {longest}
+Palindrome: {palindromes if len(palindromes) >0 else "None"}
+
+''')
+
+
+
