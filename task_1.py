@@ -1,19 +1,37 @@
 import os
 
-def palindrome(word=""):
+def is_palindrome(word=""):
+    word = word.lower()
     if len(word) < 2:
         return False
-    i = 0
-    j = len(word) - 1
 
-    while i<j:
-        if word[i] == word[j]:
-            i+=1
-            j-=1
+    start, end = 0, len(word) - 1
+    while start<end:
+        if word[start] == word[end]:
+            start+=1
+            end-=1
             continue
         else:
             return False
     return True
+
+def longest_words(words):
+    longest = list()
+    longest.append("")
+    for word in words:
+        if len(word) > len(longest[0]):
+            longest.clear()
+            longest.append(word)
+        elif len(word) == len(longest[0]):
+            longest.append(word)
+    return longest
+
+def palindrome_words(words):
+    palindromes = list()
+    for word in words:
+        if is_palindrome(word):
+            palindromes.append(word)
+    return palindromes
 
 if os.path.exists("sentences_analysis.txt"):
     os.remove("sentences_analysis.txt")
@@ -21,24 +39,16 @@ if os.path.exists("sentences_analysis.txt"):
 with open("sentences.txt", "r") as file:
     for line in file:
         line.strip()
-        palindromes = list()
-        longest = list()
-        length = 0
         words = line.split()
-        for word in words:
-            if palindrome(word):
-                palindromes.append(word)
-            if len(word) > length:
-                length = len(word)
-        for word in words:
-            if len(word) == length:
-                longest.append(word)
+
+        longest = longest_words(words)
+        palindromes = palindrome_words(words)
 
         with open("sentences_analysis.txt", "a") as output:
             output.write(f'''Sentence: {line.strip()}
 Word Count: {len(words)}
 Longest Word: {longest}
-Palindrome: {palindromes}
+Palindrome: {palindromes if len(palindromes) >0 else "None"}
 
 ''')
 
